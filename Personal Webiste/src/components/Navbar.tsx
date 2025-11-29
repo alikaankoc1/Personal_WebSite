@@ -25,7 +25,7 @@ export function Navbar({ isDark, setIsDark }: NavbarProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className={`text-2xl font-bold ${isDark ? 'text-primary' : 'text-primary'}`}>
+          <Link to="/" className={`text-[2rem] font-bold ${isDark ? 'text-primary' : 'text-primary'}`}>
             AKK
           </Link>
 
@@ -36,7 +36,7 @@ export function Navbar({ isDark, setIsDark }: NavbarProps) {
                 <Link
                   key={item.label}
                   to={item.href}
-                  className={`font-medium transition-colors ${
+                  className={`text-lg font-medium transition-colors ${
                     isDark
                       ? 'text-gray-300 hover:text-primary'
                       : 'text-gray-600 hover:text-primary'
@@ -48,7 +48,7 @@ export function Navbar({ isDark, setIsDark }: NavbarProps) {
                 <a
                   key={item.label}
                   href={item.href}
-                  className={`font-medium transition-colors ${
+                  className={`text-lg font-medium transition-colors ${
                     isDark
                       ? 'text-gray-300 hover:text-primary'
                       : 'text-gray-600 hover:text-primary'
@@ -98,7 +98,7 @@ export function Navbar({ isDark, setIsDark }: NavbarProps) {
                 <Link
                   key={item.label}
                   to={item.href}
-                  className={`block px-4 py-2 rounded-lg transition-colors ${
+                  className={`text-lg block px-4 py-2 rounded-lg transition-colors ${
                     isDark
                       ? 'text-gray-300 hover:text-primary'
                       : 'text-gray-600 hover:text-primary'
@@ -111,7 +111,7 @@ export function Navbar({ isDark, setIsDark }: NavbarProps) {
                 <a
                   key={item.label}
                   href={item.href}
-                  className={`block px-4 py-2 rounded-lg transition-colors ${
+                  className={`text-lg block px-4 py-2 rounded-lg transition-colors ${
                     isDark
                       ? 'text-gray-300 hover:text-primary'
                       : 'text-gray-600 hover:text-primary'

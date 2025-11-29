@@ -47,7 +47,7 @@ export function Hero({ isDark, profileImage }: HeroProps) {
                 Projelerimi Gör 
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </button>
-              <button className="btn-secondary">
+              <button className="btn-secondary text-black">
                 İletişime Geç
               </button>
             </div>

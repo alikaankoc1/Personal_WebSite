@@ -14,7 +14,7 @@ export function CTA({ isDark }: CTAProps) {
         <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
           Projeleriniz için benimle iletişime geçebilirsiniz.
         </p>
-        <button className="inline-flex items-center gap-2 px-8 py-4 bg-white text-blue-600 font-semibold rounded-full hover:bg-blue-50 transition-colors duration-300 group">
+        <button className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-blue-50 transition-colors duration-300 group">
           İletişime Geçin
           <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform" />
         </button>
