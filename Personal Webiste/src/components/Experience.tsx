@@ -10,23 +10,34 @@ interface ExperienceCardProps {
 
 function ExperienceCard({ isDark, icon, title, description, details }: ExperienceCardProps) {
   return (
-    <div className={`card ${isDark ? '' : 'bg-white'}`}>
-      <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 ${
-        isDark ? 'bg-blue-500/20' : 'bg-blue-100'
-      }`}>
-        <div className={isDark ? 'text-blue-400' : 'text-blue-600'}>
-          {icon}
+    <div className={`relative group rounded-3xl overflow-hidden transition-transform transform hover:-translate-y-2 hover:shadow-2xl ${isDark ? '' : ''}`}>
+      {/* thin gradient bar at the very top that appears on hover */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+      {/* Make every card the same height so the 'Eğitim' card won't be taller than the others */}
+      <div className={`p-6 md:p-8 h-64 md:h-72 flex flex-col justify-between ${isDark ? 'bg-dark-tertiary' : 'bg-white'} border ${isDark ? 'border-dark-tertiary' : 'border-gray-200'} rounded-2xl`}>
+        <div className={`w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center mb-4 ${isDark ? 'bg-blue-500/20' : 'bg-gradient-to-br from-blue-500 to-purple-600 text-white'}`}>
+          <div className={isDark ? 'text-blue-400' : 'text-white'}>
+            {icon}
+          </div>
+        </div>
+
+        <div className="flex-1">
+          <h3 className={`text-xl md:text-2xl font-bold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+            {title}
+          </h3>
+          <p className={`mb-3 ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+            {description}
+          </p>
+        </div>
+
+        <div className="mt-4 flex items-center justify-between">
+          <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+            {details}
+          </p>
+          {/* <span className="text-sm opacity-0 group-hover:opacity-100 text-blue-500 transition-opacity duration-300">Daha fazla</span> */}
         </div>
       </div>
-      <h3 className={`text-xl font-bold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-        {title}
-      </h3>
-      <p className={`mb-2 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-        {description}
-      </p>
-      <p className={`text-sm ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>
-        {details}
-      </p>
     </div>
   );
 }
@@ -46,13 +57,13 @@ export function Experience({ isDark }: ExperienceProps) {
     {
       icon: <Code2 size={28} />,
       title: 'Uzmanlık',
-      description: 'Web Geliştirme | React | JavaScript | Python',
+      description: 'Web Geliştirme | React | JavaScript | Git ',
       details: 'Modern web teknolojileri',
     },
     {
       icon: <Briefcase size={28} />,
       title: 'Deneyim',
-      description: 'React Developer @ EManager B.V',
+      description: 'React Developer  EManager B.V',
       details: 'Profesyonel geliştirme',
     },
   ];
