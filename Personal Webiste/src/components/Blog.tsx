@@ -1,4 +1,4 @@
-import { Calendar, User, ArrowRight } from 'lucide-react';
+import { Calendar, ArrowRight } from 'lucide-react';
 
 interface BlogPost {
   id: number;
@@ -25,7 +25,7 @@ export function Blog({ isDark }: BlogProps) {
       date: '2024-01-15',
       category: 'React',
       readTime: '5 min',
-      image: '/blog1.jpg',
+      image: '/react.webp',
     },
     {
       id: 2,
@@ -35,7 +35,7 @@ export function Blog({ isDark }: BlogProps) {
       date: '2024-01-10',
       category: 'TypeScript',
       readTime: '6 min',
-      image: '/blog2.jpg',
+      image: '/typescript.webp',
     },
     {
       id: 3,
@@ -45,7 +45,7 @@ export function Blog({ isDark }: BlogProps) {
       date: '2024-01-05',
       category: 'Performance',
       readTime: '7 min',
-      image: '/blog3.jpg',
+      image: '/web.webp',
     },
   ];
 
@@ -79,15 +79,19 @@ export function Blog({ isDark }: BlogProps) {
               >
                 <div className="grid md:grid-cols-3 gap-0">
                   {/* Image */}
-                  <div className={`md:col-span-1 h-48 md:h-auto overflow-hidden ${
+                  <div className={`md:col-span-1 h-48 md:h-56 lg:h-64 overflow-hidden relative ${
                     isDark ? 'bg-dark-secondary' : 'bg-gray-300'
                   }`}>
                     {post.image ? (
-                      <img
-                        src={post.image}
-                        alt={post.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
+                      <>
+                        <img
+                          src={post.image}
+                          alt={post.title}
+                          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                        />
+                        {/* subtle overlay to keep text-readable and add polish */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
+                      </>
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-4xl">
                         📝
@@ -146,9 +150,12 @@ export function Blog({ isDark }: BlogProps) {
                           {post.author}
                         </span>
                       </div>
-                      <button className="flex items-center gap-2 text-blue-500 hover:text-blue-600 transition-colors font-semibold">
+                      <button
+                        className={"inline-flex items-center gap-2 px-4 py-2 rounded-full font-semibold text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"}
+                        aria-label={`Oku: ${post.title}`}
+                      >
                         Oku
-                        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight size={16} className="ml-1 transform transition-transform group-hover:translate-x-1" />
                       </button>
                     </div>
                   </div>
