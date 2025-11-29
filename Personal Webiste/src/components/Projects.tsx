@@ -30,7 +30,7 @@ export function Projects({ isDark }: ProjectsProps) {
     {
       id: 2,
       title: 'Bookify Kütüphane APP',
-      description: 'Görev yönetimi uygulaması React ve Firebase ile oluşturulmuştur.',
+      description: 'Kütüphane yönetimi uygulaması React ve Firebase ile oluşturulmuştur.',
       category: 'Web',
       github: 'https://github.com/alikaankoc1/bookify',
       link: 'https://github.com/alikaankoc1',
@@ -46,7 +46,7 @@ export function Projects({ isDark }: ProjectsProps) {
     {
       id: 4,
       title: 'Memory Card Game',
-      description: 'RESTful API servisi Python ve Django ile geliştirilmiştir.',
+      description: 'Hafıza Kart Eşleştirme Oyunu',
       category: 'Backend',
       github: 'https://github.com/alikaankoc1/memory-card-game',
       link: 'https://github.com/alikaankoc1',
@@ -54,7 +54,7 @@ export function Projects({ isDark }: ProjectsProps) {
     {
       id: 5,
       title: 'Ehliyet-Quiz APP',
-      description: 'Sosyal medya yönetim paneli React ve TypeScript ile oluşturulmuştur.',
+      description: 'Ehliyet Sınavına uygun quiz uygulaması',
       category: 'Web',
       github: 'https://github.com/alikaankoc1/Ehliyet-Quiz',
       link: 'https://github.com/alikaankoc1',
@@ -62,7 +62,7 @@ export function Projects({ isDark }: ProjectsProps) {
     {
       id: 6,
       title: 'Todo-List APP',
-      description: 'Mobil sohbet uygulaması gerçek zamanlı mesajlaşma ile geliştirilmiştir.',
+      description: 'Mobil yapılacaklar uygulaması.',
       category: 'Mobile',
       github: 'https://github.com/alikaankoc1/todo-list-react',
       link: 'https://github.com/alikaankoc1',
