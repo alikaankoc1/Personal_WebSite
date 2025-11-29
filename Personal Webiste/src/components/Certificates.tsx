@@ -16,43 +16,43 @@ export function Certificates({ isDark }: CertificatesProps) {
   const certificates: Certificate[] = [
     {
       id: 1,
-      title: 'Otomotiv Yaz Kampı',
-      issuer: 'OİB - Otomotiv Endüstrisi Birliği',
-      date: '16-19 Temmuz 2024',
+      title: 'E Manager B.V',
+      issuer: 'React Geliştirme Stajyer',
+      date: '2025',
       image: '/certicate1.png',
     },
     {
       id: 2,
-      title: 'JavaScript Kursu',
-      issuer: 'Udemy',
-      date: '2024',
+      title: 'Kapsül Teknoloji Platformu',
+      issuer: 'Orta Seviye Pyhton Eğitimi',
+      date: '2023',
       image: '/certificate2.png',
     },
     {
       id: 3,
-      title: 'Sertifika',
-      issuer: 'Çeşitli',
+      title: 'Udemy Sadık Turan',
+      issuer: 'JavaScript Dersleri ES7+',
       date: '2024',
       image: '/certificate3.png',
     },
     {
       id: 4,
-      title: 'Sertifika - Ali Kaan Koç',
-      issuer: 'Çeşitli',
+      title: 'BTK AKADEMİ',
+      issuer: 'HTML5 ile Web Geliştirme',
       date: '2024',
       image: '/certificate4.png',
     },
     {
       id: 5,
-      title: 'Sertifika',
-      issuer: 'Çeşitli',
+      title: 'Turkcell Geleceği Yazanlar',
+      issuer: 'Veri Bilimi ve Yapay Zekaya Giriş',
       date: '2024',
       image: '/certificate5.png',
     },
     {
       id: 6,
-      title: 'Sertifika',
-      issuer: 'Çeşitli',
+      title: 'OİB',
+      issuer: 'Otomativ Yaz Kampı',
       date: '2024',
       image: '/ceretificate6.jpg',
     },
@@ -83,13 +83,13 @@ export function Certificates({ isDark }: CertificatesProps) {
               }`}
             >
               {/* Certificate Image */}
-              <div className={`relative overflow-hidden h-48 md:h-56 bg-gray-400 ${
+              <div className={`relative overflow-hidden h-56 md:h-72 bg-gray-400 ${
                 isDark ? 'bg-dark-secondary' : 'bg-gray-300'
               }`}>
                 <img
                   src={cert.image}
                   alt={cert.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-300 bg-white"
                 />
                 {/* Badge */}
                 <div className={`absolute top-4 left-4 w-10 h-10 rounded-lg flex items-center justify-center ${

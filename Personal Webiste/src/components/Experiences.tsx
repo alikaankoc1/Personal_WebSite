@@ -18,14 +18,14 @@ export function Experiences({ isDark }: ExperiencesProps) {
       title: 'React Developer Intern',
       company: 'E.Manager B.V',
       location: 'Remote',
-      date: '2024 - Devam Ediyor',
-      description: 'Start-up şirketinde React geliştirmesi yaptım. Modern web uygulamaları geliştirdim.',
+      date: 'Temmuz 2025 - Ekim 2025 ',
+      description: 'Yapay zeka destekli bir seyahat platformunun web geliştirmesinde görev aldım, React ile kullanıcı arayüzleri oluşturdu, RESTful API ile entegre oldu ve yapay zeka destekli kişiselleştirilmiş öneriler sunmak için ön uç özellikleri uygulandı. Yetenekler: React, JavaScript, REST API, Python (backend integration), Agile, Docker',
     },
     {
       title: 'Donanım Stajyeri',
       company: 'Karayolları Genel Müdürlüğü',
-      location: 'Türkiye',
-      date: '2023 - 2023',
+      location: 'Konya / Türkiye',
+      date: ' Temmuz 2024  - Ağustos 2024',
       description: 'Donanım bakımı ve teknik destek görevlerinde bulundum.',
     },
   ];

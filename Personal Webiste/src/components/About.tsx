@@ -10,7 +10,7 @@ export function About({ isDark }: AboutProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <div className="text-center mb-16">
-          <h2 className={`text-4xl md:text-5xl font-bold mb-4 ${
+          <h2 className={`text-5xl md:text-5xl font-bold mb-6 mt-1 ${
             isDark ? 'text-white' : 'text-gray-900'
           }`}>
             Hakkımda
@@ -19,26 +19,26 @@ export function About({ isDark }: AboutProps) {
         </div>
 
         {/* Main Description */}
-        <div className="mb-16">
-          <p className={`text-lg leading-relaxed text-center max-w-3xl mx-auto ${
+        {/* <div className="mb-16">
+          <p className={`text-xl leading-relaxed text-center max-w-3xl mx-auto ${
             isDark ? 'text-gray-400' : 'text-gray-700'
           }`}>
             Ben Ali Kaan Koç, Kütahya Dumlupınar Üniversitesi Bilgisayar Mühendisliği bölümü 4. sınıf öğrencisiyim. Web geliştirme alanında uzmanlıklarım ve modern teknolojilerle projeler geliştirmeyi seviyorum.
           </p>
-        </div>
+        </div> */}
 
         {/* Content Grid */}
         <div className="grid md:grid-cols-2 gap-12 items-start">
           {/* Left - Who Am I */}
           <div>
-            <h3 className={`text-2xl font-bold mb-6 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-              Kim Ben?
+            <h3 className={`text-3xl font-bold mb-6 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+              Ben Kimim ?
             </h3>
-            <p className={`mb-6 leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-700'}`}>
-              Web geliştirme tutkusuyla projeler geliştiren bir bilgisayar mühendisliği öğrencisiyim. Öğrenmeye ve kendimi geliştirmeye açık, yenilikçi çözümler üretmeyi seven bir geliştirici dostu ve performanslı uygulamalar oluşturmayı hedefliyorum.
+            <p className={`text-lg mb-6 leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-700'}`}>
+              Kütahya Dumlupınar Üniversitesi Bilgisayar Mühendisliği 4. sınıf öğrencisiyim. Web geliştirme alanıyla ilgilenip, hem Front-End hem de Back-End alanında projeler geliştiriyorum.
             </p>
-            <p className={`leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-700'}`}>
-              React, JavaScript ve Python gibi teknolojiler kullanarak full-stack web uygulamaları geliştiriyorum. Ayrıca sürekli yeni teknolojiler öğrenmeye ve projelerime uygulamaya çalışıyorum.
+            <p className={`text-lg leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-700'}`}>
+              Front-End alanında React, TypeScript, JavaScript, Bootstrap. Tailwind CSS  gibi teknolojiler kullanarak full-stack web uygulamaları geliştiriyorum. Ayrıca sürekli yeni teknolojiler öğrenmeye ve projelerime uygulamaya çalışıyorum.
             </p>
           </div>
 
@@ -53,13 +53,13 @@ export function About({ isDark }: AboutProps) {
                   <GraduationCap className={isDark ? 'text-blue-400' : 'text-blue-600'} size={24} />
                 </div>
                 <div>
-                  <h4 className={`text-lg font-bold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                  <h4 className={`text-xl font-bold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
                     Eğitim
                   </h4>
-                  <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                  <p className={`text-lg ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                     Kütahya Dumlupınar Üniversitesi
                   </p>
-                  <p className={`text-sm ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>
+                  <p className={`text-md ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>
                     Bilgisayar Mühendisliği - 4. Sınıf
                   </p>
                 </div>
@@ -75,10 +75,10 @@ export function About({ isDark }: AboutProps) {
                   <Zap className={isDark ? 'text-blue-400' : 'text-blue-600'} size={24} />
                 </div>
                 <div>
-                  <h4 className={`text-lg font-bold mb-3 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                  <h4 className={`text-xl font-bold mb-3 ${isDark ? 'text-white' : 'text-gray-900'}`}>
                     İlgi Alanları
                   </h4>
-                  <ul className={`space-y-1 text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                  <ul className={`space-y-1 text-md ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                     <li>• Web Geliştirme</li>
                     <li>• Frontend Teknolojileri</li>
                     <li>• Backend Geliştirme</li>
