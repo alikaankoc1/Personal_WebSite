@@ -116,17 +116,23 @@ export function Certificates({ isDark }: CertificatesProps) {
             </div>
           ))}
         </div>
-        {/* CV Download Button (visual only for now) */}
+        
         <div className="mt-12 flex justify-center">
-          <button
-            type="button"
-            aria-label="CV indir"
-            className="inline-flex items-center gap-3 px-8 py-3 rounded-2xl text-white font-medium bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-shadow shadow-md"
-          >
-            <Download size={18} />
-            CV'mi İndir
-          </button>
-        </div>
+  <a
+    // 1. CV'nizin public klasöründeki doğru yolu
+    href="/Ali_Kaan_Koc_Computer_Engineer.pdf"
+    
+    // 2. Tıklandığında indirmeyi tetikleyen nitelik
+    download 
+    
+    aria-label="CV'mi İndir"
+    // 3. Tailwind sınıflarını taşıyoruz
+    className="inline-flex items-center gap-3 px-8 py-3 rounded-2xl text-white font-medium bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-shadow shadow-md"
+  >
+    <Download size={18} />
+    CV'mi İndir
+  </a>
+</div>
       </div>
     </section>
   );

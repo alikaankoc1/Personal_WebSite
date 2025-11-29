@@ -1,4 +1,6 @@
 import { Github, Linkedin, Mail, ArrowRight } from 'lucide-react';
+// YENİ IMPORT: react-router-dom'dan Link'i içeri aktarıyoruz
+import { Link } from 'react-router-dom'; 
 
 interface HeroProps {
   isDark: boolean;
@@ -41,34 +43,43 @@ export function Hero({ isDark, profileImage }: HeroProps) {
               Modern web teknolojileri ile yenilikçi projeler geliştiriyorum. React, JavaScript ve Python konularında uzmanlaşıyorum.
             </p>
 
-            {/* Buttons */}
+            {/* Buttons (DÜZENLENEN KISIM) */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <button className="group btn-primary flex items-center justify-center gap-2">
+              {/* Projelerimi Gör butonu: /projeler sayfasına yönlendiriyor */}
+              <Link 
+                to="/projeler" 
+                className="group btn-primary flex items-center justify-center gap-2"
+              >
                 Projelerimi Gör 
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button className="btn-secondary text-black">
+              </Link>
+              
+              {/* İletişime Geç butonu: /iletisim sayfasına yönlendiriyor */}
+              <Link 
+                to="/iletisim" 
+                className={`btn-secondary flex items-center justify-center ${isDark ? 'text-white' : 'text-black'}`}
+              >
                 İletişime Geç
-              </button>
+              </Link>
             </div>
 
             {/* Social Icons */}
             <div className="flex gap-4 pt-4">
-              <a href="#" className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
+              <a href="https://github.com/alikaankoc1" target='blank' className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
                 isDark 
                   ? 'bg-gray-800 hover:bg-blue-600 text-white' 
                   : 'bg-gray-200 hover:bg-blue-600 text-gray-700 hover:text-white'
               }`}>
                 <Github size={24} />
               </a>
-              <a href="#" className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
+              <a href="https://www.linkedin.com/in/alikaankoc/" target='blank' className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
                 isDark 
                   ? 'bg-gray-800 hover:bg-blue-600 text-white' 
                   : 'bg-gray-200 hover:bg-blue-600 text-gray-700 hover:text-white'
               }`}>
                 <Linkedin size={24} />
               </a>
-              <a href="#" className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
+              <a href="mailto:alikaansoftdev@gmail.com"  className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
                 isDark 
                   ? 'bg-gray-800 hover:bg-blue-600 text-white' 
                   : 'bg-gray-200 hover:bg-blue-600 text-gray-700 hover:text-white'

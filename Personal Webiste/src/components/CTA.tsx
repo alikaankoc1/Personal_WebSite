@@ -1,4 +1,6 @@
 import { ArrowRight } from 'lucide-react';
+// YENİ IMPORT: react-router-dom'dan Link'i içeri aktarıyoruz
+import { Link } from 'react-router-dom';
 
 interface CTAProps {
   isDark: boolean;
@@ -14,10 +16,14 @@ export function CTA({ isDark }: CTAProps) {
         <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
           Projeleriniz için benimle iletişime geçebilirsiniz.
         </p>
-        <button className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-blue-50 transition-colors duration-300 group">
+        {/* <button> yerine <Link> kullanıyoruz ve to="/iletisim" veriyoruz */}
+        <Link 
+          to="/iletisim" 
+          className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-blue-50 transition-colors duration-300 group"
+        >
           İletişime Geçin
           <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform" />
-        </button>
+        </Link>
       </div>
     </section>
   );
