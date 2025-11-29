@@ -79,12 +79,13 @@ export function Navbar({ isDark, setIsDark }: NavbarProps) {
 
             <button
               onClick={toggleMenu}
-              className="md:hidden"
+              aria-label={isOpen ? 'Kapat menü' : 'Menüyü aç'}
+              className={`md:hidden w-10 h-10 flex items-center justify-center rounded-lg transition-all border ${isDark ? 'bg-white/5 border-white/10 text-white hover:bg-white/10' : 'bg-white border-gray-200 text-black hover:bg-gray-100'} ${isOpen ? 'ring-2 ring-blue-500/30' : 'shadow-sm'}`}
             >
               {isOpen ? (
-                <X size={24} className={isDark ? 'text-white' : 'text-black'} />
+                <X size={20} className={isDark ? 'text-white' : 'text-black'} />
               ) : (
-                <Menu size={24} className={isDark ? 'text-white' : 'text-black'} />
+                <Menu size={20} className={isDark ? 'text-white' : 'text-black'} />
               )}
             </button>
           </div>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Github, Linkedin, MapPin, Send } from 'lucide-react';
+import { Mail, Github, Linkedin, MapPin, Send, GraduationCap } from 'lucide-react';
 
 interface ContactProps {
   isDark: boolean;
@@ -52,6 +52,12 @@ export function Contact({ isDark }: ContactProps) {
       title: 'LinkedIn',
       value: 'linkedin.com/in/alikaankoc',
       link: 'https://linkedin.com/in/alikaankoc',
+    },
+    {
+      icon: <GraduationCap size={24} />,
+      title: 'Üniversite',
+      value: 'DPÜ Bilgisayar Mühendisliği',
+      link: '/hakkimda',
     },
     {
       icon: <MapPin size={24} />,
