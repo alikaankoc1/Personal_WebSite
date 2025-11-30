@@ -3,8 +3,12 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 
+import { LanguageProvider } from './components/LanguageContext.tsx'; 
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <LanguageProvider>  {/* Artık LanguageProvider tüm uygulamayı sarmalıyor */}
+      <App />
+    </LanguageProvider> 
   </StrictMode>,
 )

@@ -1,6 +1,10 @@
+// Hero.tsx
+
 import { Github, Linkedin, Mail, ArrowRight } from 'lucide-react';
 // YENİ IMPORT: react-router-dom'dan Link'i içeri aktarıyoruz
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
+// YENİ IMPORT: Dil desteği için useLanguage hook'unu içeri aktarıyoruz
+import { useLanguage } from '../components/LanguageContext'; 
 
 interface HeroProps {
   isDark: boolean;
@@ -8,6 +12,9 @@ interface HeroProps {
 }
 
 export function Hero({ isDark, profileImage }: HeroProps) {
+  // Context'ten dinamik metinleri çekiyoruz
+  const { heroContent } = useLanguage(); 
+
   return (
     <section className={`${isDark ? 'bg-dark' : 'bg-gradient-to-br from-gray-50 to-gray-100'} min-h-screen flex items-center`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
@@ -20,7 +27,7 @@ export function Hero({ isDark, profileImage }: HeroProps) {
             }`}>
               <span className="text-2xl">👋</span>
               <span className={`font-medium ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>
-                Merhaba, ben
+                {heroContent.greeting} {/* DİNAMİK METİN */}
               </span>
             </div>
 
@@ -29,10 +36,10 @@ export function Hero({ isDark, profileImage }: HeroProps) {
               <h1 className={`text-5xl md:text-6xl font-bold leading-tight ${
                 isDark ? 'text-white' : 'text-gray-900'
               }`}>
-                Ali Kaan <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">Koç</span>
+                {heroContent.titleFirstName} <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">{heroContent.titleLastName}</span> {/* DİNAMİK METİN */}
               </h1>
               <p className={`text-xl ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                Web Developer & Bilgisayar Mühendisliği Öğrencisi
+                {heroContent.titleProfession} {/* DİNAMİK METİN */}
               </p>
             </div>
 
@@ -40,17 +47,17 @@ export function Hero({ isDark, profileImage }: HeroProps) {
             <p className={`text-lg leading-relaxed max-w-lg ${
               isDark ? 'text-gray-400' : 'text-gray-700'
             }`}>
-              Modern web teknolojileri ile yenilikçi projeler geliştiriyorum. React, JavaScript ve Python konularında uzmanlaşıyorum.
+              {heroContent.description} {/* DİNAMİK METİN */}
             </p>
 
-            {/* Buttons (DÜZENLENEN KISIM) */}
+            {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               {/* Projelerimi Gör butonu: /projeler sayfasına yönlendiriyor */}
               <Link 
                 to="/projeler" 
                 className="group btn-primary flex items-center justify-center gap-2"
               >
-                Projelerimi Gör 
+                {heroContent.buttonProjects} {/* DİNAMİK METİN */}
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </Link>
               
@@ -59,7 +66,7 @@ export function Hero({ isDark, profileImage }: HeroProps) {
                 to="/iletisim" 
                 className={`btn-secondary flex items-center justify-center ${isDark ? 'text-white' : 'text-black'}`}
               >
-                İletişime Geç
+                {heroContent.buttonContact} {/* DİNAMİK METİN */}
               </Link>
             </div>
 

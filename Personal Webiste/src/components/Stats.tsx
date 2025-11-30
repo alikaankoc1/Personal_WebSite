@@ -1,31 +1,30 @@
-interface StatItem {
-  number: string;
-  label: string;
-}
+// Stats.tsx
+
+import { useLanguage } from './LanguageContext';
+
+// StatItem interface'i LanguageContext'e taşındığı için buradan kaldırıldı.
 
 interface StatsProps {
   isDark: boolean;
 }
 
 export function Stats({ isDark }: StatsProps) {
-  const stats: StatItem[] = [
-    { number: '4', label: 'Yıl Eğitim' },
-    { number: '2+', label: 'Staj Deneyimi' },
-    { number: '10+', label: 'Proje' },
-    { number: '5+', label: 'Teknoloji' },
-  ];
+  // Context'ten dinamik istatistik listesini çekiyoruz
+  const { statsContent } = useLanguage();
+  const { stats } = statsContent;
 
   return (
+    // CSS sınıfları sabit tutulmuştur.
     <section className={`${isDark ? 'bg-dark-secondary' : 'bg-white'} py-16`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
             <div key={index} className="text-center">
               <div className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 mb-2">
-                {stat.number}
+                {stat.number} {/* DİNAMİK METİN */}
               </div>
               <div className={`text-sm md:text-base ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                {stat.label}
+                {stat.label} {/* DİNAMİK METİN */}
               </div>
             </div>
           ))}

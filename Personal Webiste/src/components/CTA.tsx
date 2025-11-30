@@ -1,29 +1,31 @@
+// CTA.tsx
+
 import { ArrowRight } from 'lucide-react';
-// YENİ IMPORT: react-router-dom'dan Link'i içeri aktarıyoruz
-import { Link } from 'react-router-dom';
+import { useLanguage } from './LanguageContext';
 
 interface CTAProps {
   isDark: boolean;
 }
 
 export function CTA({ isDark }: CTAProps) {
+  // Context'ten dinamik CTA içeriğini çekiyoruz
+  const { ctaContent } = useLanguage();
+  const { heading, subheading, buttonText } = ctaContent;
+  
   return (
+    // CSS sınıfları sabit tutulmuştur.
     <section className={`bg-gradient-to-r from-blue-600 to-purple-600 py-20`}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-          Birlikte Çalışmak İster misiniz?
+          {heading} {/* DİNAMİK METİN */}
         </h2>
         <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-          Projeleriniz için benimle iletişime geçebilirsiniz.
+          {subheading} {/* DİNAMİK METİN */}
         </p>
-        {/* <button> yerine <Link> kullanıyoruz ve to="/iletisim" veriyoruz */}
-        <Link 
-          to="/iletisim" 
-          className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-blue-50 transition-colors duration-300 group"
-        >
-          İletişime Geçin
+        <button className="inline-flex items-center gap-2 px-8 py-4 bg-white text-blue-600 font-semibold rounded-full hover:bg-blue-50 transition-colors duration-300 group">
+          {buttonText} {/* DİNAMİK METİN */}
           <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform" />
-        </Link>
+        </button>
       </div>
     </section>
   );

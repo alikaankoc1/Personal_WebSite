@@ -1,7 +1,23 @@
+// Footer.tsx
+
 import { Github, Linkedin, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
+// Dil desteği için useLanguage hook'unu içeri aktarıyoruz
+import { useLanguage } from '../components/LanguageContext'; // Dosya yolunuza göre ayarlayın (genellikle doğru)
 
 export function Footer({ isDark }: { isDark: boolean }) {
+  // Context'ten dinamik metinleri çekiyoruz
+  const { navContent, footerContent } = useLanguage(); 
+
+  // Navigasyon bağlantılarını NavContent'ten dinamik olarak oluşturuyoruz
+  const navItems = [
+    { label: navContent.home, href: '/' },
+    { label: navContent.about, href: '/hakkimda' },
+    { label: navContent.projects, href: '/projeler' },
+    { label: navContent.blog, href: '/blog' },
+    { label: navContent.contact, href: '/iletisim' },
+  ];
+
   return (
     <footer className={`${isDark ? 'bg-dark-secondary' : 'bg-gray-900'} py-16 border-t ${isDark ? 'border-dark-tertiary' : 'border-gray-800'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -11,58 +27,43 @@ export function Footer({ isDark }: { isDark: boolean }) {
             <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 mb-2">
               Ali Kaan Koç
             </h3>
+            {/* DİNAMİK METİN: Tagline */}
             <p className={`${isDark ? 'text-gray-400' : 'text-gray-300'}`}>
-              Web Developer | Bilgisayar Mühendisliği Öğrencisi
+              {footerContent.tagline} 
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
+            {/* DİNAMİK METİN: Hızlı Bağlantılar Başlığı */}
             <h4 className={`font-semibold mb-4 ${isDark ? 'text-white' : 'text-gray-100'}`}>
-              Hızlı Bağlantılar
+              {footerContent.quickLinks} 
             </h4>
             <ul className="space-y-2">
-              <li>
-                <Link
-                  to="/"
-                  className={`transition-colors hover:text-blue-500 ${isDark ? 'text-gray-400 hover:text-blue-400' : 'text-gray-300 hover:text-blue-400'}`}
-                >
-                  Ana Sayfa
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/hakkimda"
-                  className={`transition-colors hover:text-blue-500 ${isDark ? 'text-gray-400 hover:text-blue-400' : 'text-gray-300 hover:text-blue-400'}`}
-                >
-                  Hakkımda
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/projeler"
-                  className={`transition-colors hover:text-blue-500 ${isDark ? 'text-gray-400 hover:text-blue-400' : 'text-gray-300 hover:text-blue-400'}`}
-                >
-                  Projeler
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/iletisim"
-                  className={`transition-colors hover:text-blue-500 ${isDark ? 'text-gray-400 hover:text-blue-400' : 'text-gray-300 hover:text-blue-400'}`}
-                >
-                  İletişim
-                </Link>
-              </li>
+              {/* Navigasyon öğeleri (Artık navItems üzerinden dinamik geliyor) */}
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    to={item.href}
+                    className={`transition-colors hover:text-blue-400 ${
+                      isDark ? 'text-gray-400' : 'text-gray-300'
+                    }`}
+                  >
+                    {item.label} {/* DİNAMİK METİN */}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Social Media */}
           <div>
+            {/* SOSYAL MEDYA Başlığı (Çeviriyi buraya ekledik) */}
             <h4 className={`font-semibold mb-4 ${isDark ? 'text-white' : 'text-gray-100'}`}>
-              Sosyal Medya
+              İletişim
             </h4>
             <div className="flex gap-4">
+              {/* Sosyal Medya Bağlantıları (Değiştirilmedi) */}
               <a
                 href="https://github.com/alikaankoc1"
                 target="_blank"
@@ -104,8 +105,13 @@ export function Footer({ isDark }: { isDark: boolean }) {
         {/* Divider */}
         <div className={`border-t ${isDark ? 'border-dark-tertiary' : 'border-gray-800'} py-8`}>
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            {/* DİNAMİK METİN: Copyright */}
             <p className={`text-sm ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
-              © 2025 Ali Kaan Koç. Tüm hakları saklıdır.
+              {footerContent.copyRight} 
+            </p>
+            {/* Bu kısım sabit bırakıldı, çeviriye dahil edilmek istenirse Context'e eklenmelidir */}
+            <p className={`text-xs ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
+              Geliştirici: Ali Kaan Koç
             </p>
           </div>
         </div>

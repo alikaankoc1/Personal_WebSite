@@ -1,6 +1,9 @@
+// src/components/Navbar.tsx
+
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, Sun, Moon } from 'lucide-react';
+import { useLanguage } from '../components/LanguageContext'; // Yeni: Dil Context'ini import et
 
 interface NavbarProps {
   isDark: boolean;
@@ -9,15 +12,24 @@ interface NavbarProps {
 
 export function Navbar({ isDark, setIsDark }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
+  
+  // Dil Context'ini kullan
+  const { language, setLanguage, navContent } = useLanguage();
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
+  // Yeni: Dil Değiştirme Fonksiyonu
+  const toggleLanguage = () => {
+    setLanguage(language === 'tr' ? 'en' : 'tr');
+  };
+
+  // Navigasyon öğeleri, Context'ten gelen içeriği kullanacak
   const navItems = [
-    { label: 'Ana Sayfa', href: '/' },
-    { label: 'Hakkımda', href: '/hakkimda' },
-    { label: 'Projeler', href: '/projeler' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'İletişim', href: '/iletisim' },
+    { label: navContent.home, href: '/' },
+    { label: navContent.about, href: '/hakkimda' },
+    { label: navContent.projects, href: '/projeler' },
+    { label: navContent.blog, href: '/blog' },
+    { label: navContent.contact, href: '/iletisim' },
   ];
 
   return (
@@ -60,8 +72,22 @@ export function Navbar({ isDark, setIsDark }: NavbarProps) {
             ))}
           </div>
 
-          {/* Theme Toggle & Mobile Menu Button */}
+          {/* Language Toggle, Theme Toggle & Mobile Menu Button */}
           <div className="flex items-center gap-4">
+            {/* Yeni: Dil Değiştirme Butonu */}
+            <button
+              onClick={toggleLanguage}
+              className={`p-2 rounded-lg transition-colors font-semibold text-sm w-10 h-10 flex items-center justify-center ${
+                isDark
+                  ? 'bg-dark-tertiary hover:bg-dark-tertiary/80 text-white'
+                  : 'bg-gray-100 hover:bg-gray-200 text-gray-800'
+              }`}
+              aria-label={language === 'tr' ? 'Switch to English' : 'Türkçeye geç'}
+            >
+              {language === 'tr' ? 'EN' : 'TR'}
+            </button>
+
+            {/* Dark Mode Butonu */}
             <button
               onClick={() => setIsDark(!isDark)}
               className={`p-2 rounded-lg transition-colors ${
@@ -91,7 +117,7 @@ export function Navbar({ isDark, setIsDark }: NavbarProps) {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu (Dinamik Etiketler) */}
         {isOpen && (
           <div className={`md:hidden pb-4 ${isDark ? 'bg-dark-secondary' : 'bg-gray-50'}`}>
             {navItems.map((item) => (
@@ -99,7 +125,7 @@ export function Navbar({ isDark, setIsDark }: NavbarProps) {
                 <Link
                   key={item.label}
                   to={item.href}
-                  className={`text-lg block px-4 py-2 rounded-lg transition-colors ${
+                  className={`block px-4 py-2 rounded-lg transition-colors ${
                     isDark
                       ? 'text-gray-300 hover:text-primary'
                       : 'text-gray-600 hover:text-primary'
@@ -112,7 +138,7 @@ export function Navbar({ isDark, setIsDark }: NavbarProps) {
                 <a
                   key={item.label}
                   href={item.href}
-                  className={`text-lg block px-4 py-2 rounded-lg transition-colors ${
+                  className={`block px-4 py-2 rounded-lg transition-colors ${
                     isDark
                       ? 'text-gray-300 hover:text-primary'
                       : 'text-gray-600 hover:text-primary'

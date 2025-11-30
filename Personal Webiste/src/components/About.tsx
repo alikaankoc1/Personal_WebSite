@@ -1,10 +1,17 @@
+// About.tsx
+
 import { GraduationCap, Zap } from 'lucide-react';
+// useLanguage hook'unu içeri aktarıyoruz
+import { useLanguage } from './LanguageContext'; // Dosya yolunuzu kontrol edin
 
 interface AboutProps {
   isDark: boolean;
 }
 
 export function About({ isDark }: AboutProps) {
+  // Context'ten dinamik metinleri çekiyoruz
+  const { aboutContent } = useLanguage();
+
   return (
     <section className={`${isDark ? 'bg-dark' : 'bg-white'} py-20`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -13,32 +20,23 @@ export function About({ isDark }: AboutProps) {
           <h2 className={`text-5xl md:text-5xl font-bold mb-6 mt-1 ${
             isDark ? 'text-white' : 'text-gray-900'
           }`}>
-            Hakkımda
+            {aboutContent.sectionTitle} {/* DİNAMİK METİN */}
           </h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full"></div>
         </div>
-
-        {/* Main Description */}
-        {/* <div className="mb-16">
-          <p className={`text-xl leading-relaxed text-center max-w-3xl mx-auto ${
-            isDark ? 'text-gray-400' : 'text-gray-700'
-          }`}>
-            Ben Ali Kaan Koç, Kütahya Dumlupınar Üniversitesi Bilgisayar Mühendisliği bölümü 4. sınıf öğrencisiyim. Web geliştirme alanında uzmanlıklarım ve modern teknolojilerle projeler geliştirmeyi seviyorum.
-          </p>
-        </div> */}
 
         {/* Content Grid */}
         <div className="grid md:grid-cols-2 gap-12 items-start">
           {/* Left - Who Am I */}
           <div>
             <h3 className={`text-3xl font-bold mb-6 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-              Ben Kimim ?
+              {aboutContent.whoAmI} {/* DİNAMİK METİN */}
             </h3>
             <p className={`text-lg mb-6 leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-700'}`}>
-              Kütahya Dumlupınar Üniversitesi Bilgisayar Mühendisliği 4. sınıf öğrencisiyim. Web geliştirme alanıyla ilgilenip, hem Front-End hem de Back-End alanında projeler geliştiriyorum.
+              {aboutContent.descriptionPara1} {/* DİNAMİK METİN */}
             </p>
             <p className={`text-lg leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-700'}`}>
-              Front-End alanında React, TypeScript, JavaScript, Bootstrap. Tailwind CSS  gibi teknolojiler kullanarak full-stack web uygulamaları geliştiriyorum. Ayrıca sürekli yeni teknolojiler öğrenmeye ve projelerime uygulamaya çalışıyorum.
+              {aboutContent.descriptionPara2} {/* DİNAMİK METİN */}
             </p>
           </div>
 
@@ -54,13 +52,13 @@ export function About({ isDark }: AboutProps) {
                 </div>
                 <div>
                   <h4 className={`text-xl font-bold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                    Eğitim
+                    {aboutContent.educationTitle} {/* DİNAMİK METİN */}
                   </h4>
                   <p className={`text-lg ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                    Kütahya Dumlupınar Üniversitesi
+                    {aboutContent.educationUniversity} {/* DİNAMİK METİN */}
                   </p>
                   <p className={`text-md ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>
-                    Bilgisayar Mühendisliği - 4. Sınıf
+                    {aboutContent.educationDegree} {/* DİNAMİK METİN */}
                   </p>
                 </div>
               </div>
@@ -76,13 +74,13 @@ export function About({ isDark }: AboutProps) {
                 </div>
                 <div>
                   <h4 className={`text-xl font-bold mb-3 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                    İlgi Alanları
+                    {aboutContent.skillsTitle} {/* DİNAMİK METİN */}
                   </h4>
                   <ul className={`space-y-1 text-md ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                    <li>• Web Geliştirme</li>
-                    <li>• Frontend Teknolojileri</li>
-                    <li>• Backend Geliştirme</li>
-                    <li>• Yazılım Mimarisi</li>
+                    <li>• {aboutContent.skillWebDev}</li> {/* DİNAMİK METİN */}
+                    <li>• {aboutContent.skillFrontend}</li> {/* DİNAMİK METİN */}
+                    <li>• {aboutContent.skillBackend}</li> {/* DİNAMİK METİN */}
+                    <li>• {aboutContent.skillArchitecture}</li> {/* DİNAMİK METİN */}
                   </ul>
                 </div>
               </div>
