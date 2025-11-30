@@ -369,7 +369,7 @@ const allTranslations = {
           description: 'Ehliyet sınav soruların olduğu, süreye karşı yarışıann online sınav uygulaması.',
           category: 'Full Stack',
           github: 'https://github.com/alikaankoc1/Ehliyet-Quiz',
-          link: 'https://github.com/alikaankoc1',
+          link: 'https://alikaankoc1.github.io/quiz.app/',
            image: "/public/ehliyet.png"  
         },
          {
@@ -669,7 +669,7 @@ const allTranslations = {
           description: 'An online exam application that includes drivers license exam questions and races against time.',
           category: 'Full Stack',
           github: 'https://github.com/alikaankoc1/Ehliyet-Quiz',
-          link: 'https://github.com/alikaankoc1',
+          link: 'https://alikaankoc1.github.io/quiz.app/',
           image: "/public/ehliyet.png" 
         },
           {
