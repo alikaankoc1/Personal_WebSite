@@ -289,7 +289,7 @@ const allTranslations = {
           category: 'Full Stack',
           github: 'https://github.com/alikaankoc1/e-ticaret-app',
           link: 'https://github.com/alikaankoc1',
-          image: "/public/react.webp"   // GÖRSEL BURADA
+          image: "/public/memorycard.png"   // GÖRSEL BURADA
 
         },
         {
@@ -307,6 +307,7 @@ const allTranslations = {
           category: 'Mobile',
           github: 'https://github.com/alikaankoc1/weather-app',
           link: 'https://github.com/alikaankoc1',
+          image: "/public/weather.png" 
         },
         {
           id: 4,
@@ -315,6 +316,7 @@ const allTranslations = {
           category: 'Backend',
           github: 'https://github.com/alikaankoc1/memory-card-game',
           link: 'https://github.com/alikaankoc1',
+          image: "/public/memory.png" 
         },
          {
           id: 5,
@@ -323,6 +325,8 @@ const allTranslations = {
           category: 'Full-Stack',
           github: 'https://github.com/alikaankoc1/Ehliyet-Quiz',
           link: 'https://github.com/alikaankoc1',
+           image: "/public/a.png"   // GÖRSEL BURADA
+
         },
          {
           id: 6,

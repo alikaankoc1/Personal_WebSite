@@ -85,7 +85,7 @@ export function Projects({ isDark }: ProjectsProps) {
                 }`}
               >
                 {/* Image */}
-                <div className="aspect-video bg-gray-200">
+                <div className="w-full h-52 overflow-hidden rounded-t-2xl bg-gray-200">
                   {project.image ? (
                     <img
                       src={project.image}
