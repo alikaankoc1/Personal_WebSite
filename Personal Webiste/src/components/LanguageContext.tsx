@@ -285,11 +285,11 @@ const allTranslations = {
         {
           id: 1,
           title: 'E-Ticaret Platformu',
-          description: 'Modern e-ticaret platformu React ve Node.js ile geliştirilmiştir. Stripe entegrasyonu ve tam yetkili admin paneli içerir.',
+          description: 'Modern e-ticaret platformu React ve Node.js ile geliştirilmiştir.',
           category: 'Full Stack',
           github: 'https://github.com/alikaankoc1/e-ticaret-app',
           link: 'https://github.com/alikaankoc1',
-          image: "/public/memorycard.png"   // GÖRSEL BURADA
+          image: "/public/forma.png"  
 
         },
         {
@@ -299,6 +299,7 @@ const allTranslations = {
           category: 'Web',
           github: 'https://github.com/alikaankoc1/bookify',
           link: 'https://github.com/alikaankoc1',
+           image: "/public/kütüphane.png" 
         },
         {
           id: 3,
@@ -316,17 +317,16 @@ const allTranslations = {
           category: 'Backend',
           github: 'https://github.com/alikaankoc1/memory-card-game',
           link: 'https://github.com/alikaankoc1',
-          image: "/public/memory.png" 
+          image: "/public/card.png" 
         },
          {
           id: 5,
           title: 'Ehliyet Quiz Uygulaması',
           description: 'Ehliyet sınav soruların olduğu, süreye karşı yarışıann online sınav uygulaması.',
-          category: 'Full-Stack',
+          category: 'Full Stack',
           github: 'https://github.com/alikaankoc1/Ehliyet-Quiz',
           link: 'https://github.com/alikaankoc1',
-           image: "/public/a.png"   // GÖRSEL BURADA
-
+           image: "/public/ehliyet.png"  
         },
          {
           id: 6,
@@ -335,6 +335,7 @@ const allTranslations = {
           category: 'Backend',
           github: 'https://github.com/alikaankoc1/todo-list-react',
           link: 'https://github.com/alikaankoc1',
+           image: "/public/todo.png"
         },
       ],
     },
