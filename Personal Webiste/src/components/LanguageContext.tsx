@@ -3,6 +3,39 @@ import { createContext, useState, useContext, ReactNode } from 'react';
 // --- TEMEL TİP TANIMLARI ---
 type Language = 'tr' | 'en';
 
+// **YENİ EKLENEN TİP: Experience Card Data (Experience.tsx için)**
+interface ExperienceCardData {
+  iconType: 'GraduationCap' | 'Code2' | 'Briefcase';
+  title: string;
+  description: string;
+  details: string;
+}
+
+interface ExperienceCardsContent {
+  cards: ExperienceCardData[];
+}
+// -----------------------------------------------------------------
+
+// **TİP: ContactInfoItem**
+interface ContactInfoItem {
+  iconType: 'Mail' | 'Github' | 'Linkedin' | 'MapPin' | 'GraduationCap';
+  title: string;
+  value: string;
+  link: string;
+}
+
+// **TİP: Blog Post**
+interface BlogPost {
+  id: number;
+  title: string;
+  excerpt: string;
+  author: string;
+  date: string;
+  category: string;
+  readTime: string;
+  image?: string;
+}
+
 interface NavContent {
   home: string;
   about: string;
@@ -124,8 +157,19 @@ interface ContactContent {
     submitButton: string;
     submittedMessage: string;
     address: string;
-    phone: string; // phone alanı zaten tip tanımında var
+    phone: string;
+    contactInfo: ContactInfoItem[]; 
 }
+
+// **TİP: Blog Content**
+interface BlogContent {
+  sectionTitle: string;
+  sectionDescription: string;
+  readButton: string;
+  noPostsMessage: string;
+  blogPosts: BlogPost[];
+}
+
 
 // Tüm Context değerlerini tanımlayan ana arayüz
 interface LanguageContextType {
@@ -141,6 +185,8 @@ interface LanguageContextType {
   ctaContent: CTAContent;
   projectsContent: ProjectsContent;
   contactContent: ContactContent;
+  blogContent: BlogContent;
+  experienceCardsContent: ExperienceCardsContent; // <-- Experience.tsx için eklendi
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -354,8 +400,103 @@ const allTranslations = {
         submitButton: 'Mesaj Gönder',
         submittedMessage: 'Mesaj Gönderildi! ✓',
         address: 'Kütahya, Türkiye',
-        phone: '+90 5XX XXX XX XX', 
-    }
+        phone: '+90 5XX XXX XX XX',
+        // İletişim Bilgileri listesi
+        contactInfo: [
+            {
+                iconType: 'Mail',
+                title: 'Email',
+                value: 'alikaansoftdev@gmail.com',
+                link: 'mailto:alikaansoftdev@gmail.com',
+            },
+            {
+                iconType: 'Github',
+                title: 'GitHub',
+                value: 'github.com/alikaankoc1',
+                link: 'https://github.com/alikaankoc1',
+            },
+            {
+                iconType: 'Linkedin',
+                title: 'LinkedIn',
+                value: 'linkedin.com/in/alikaankoc',
+                link: 'https://linkedin.com/in/alikaankoc',
+            },
+            {
+                iconType: 'GraduationCap',
+                title: 'Üniversite',
+                value: 'DPÜ Bilgisayar Mühendisliği',
+                link: '/hakkimda',
+            },
+            {
+                iconType: 'MapPin',
+                title: 'Konum',
+                value: 'Kütahya, Türkiye',
+                link: '#',
+            },
+        ],
+    },
+    // **Blog TR Çevirisi**
+    blogContent: {
+      sectionTitle: 'Blog',
+      sectionDescription: 'Teknoloji, web geliştirme ve kişisel deneyimlerim hakkında yazılarım.',
+      readButton: 'Oku',
+      noPostsMessage: 'Henüz blog yazısı yayınlanmadı. Yakında ilk yazılarımı paylaşacağım!',
+      blogPosts: [
+        {
+          id: 1,
+          title: 'React ile Modern Web Uygulamaları Geliştirmek',
+          excerpt: 'React framework\'ü ile modern, hızlı ve responsive web uygulamaları nasıl geliştirilir? Bu yazıda React\'in temel konseptlerini ve best practices\'leri öğreneceğiz.',
+          author: 'Ali Kaan Koç',
+          date: '2024-01-15',
+          category: 'React',
+          readTime: '5 min',
+          image: '/react.webp',
+        },
+        {
+          id: 2,
+          title: 'TypeScript ile Tip Güvenliği Sağlamak',
+          excerpt: 'TypeScript, JavaScript\'e tip güvenliği ekler ve kodunuzu daha güvenilir hale getirir. Bu yazıda TypeScript\'in avantajlarını ve nasıl kullanılacağını öğreneceğiz.',
+          author: 'Ali Kaan Koç',
+          date: '2024-01-10',
+          category: 'TypeScript',
+          readTime: '6 min',
+          image: '/typescript.webp',
+        },
+        {
+          id: 3,
+          title: 'Web Performansı Optimizasyonu',
+          excerpt: 'Web sitesinin hızı ve performansı SEO açısından çok önemlidir. Bu yazıda performans optimizasyonu teknikleri hakkında bilgi alacağız.',
+          author: 'Ali Kaan Koç',
+          date: '2024-01-05',
+          category: 'Performance',
+          readTime: '7 min',
+          image: '/web.webp',
+        },
+      ],
+    },
+    // **YENİ EKLENEN EXPERIENCE CARD VERİSİ TR**
+    experienceCardsContent: {
+      cards: [
+        {
+          iconType: 'GraduationCap',
+          title: 'Eğitim',
+          description: 'Kütahya Dumlupınar Üniversitesi - Bilgisayar Mühendisliği',
+          details: '4. Sınıf',
+        },
+        {
+          iconType: 'Code2',
+          title: 'Uzmanlık',
+          description: 'Web Geliştirme | React | TypeScript | Git',
+          details: 'Modern web teknolojileri',
+        },
+        {
+          iconType: 'Briefcase',
+          title: 'Deneyim',
+          description: 'React Developer Stajyeri - EManager B.V',
+          details: 'Profesyonel geliştirme',
+        },
+      ],
+    },
   },
   en: {
     navContent: {
@@ -493,6 +634,7 @@ const allTranslations = {
           category: 'Full Stack',
           github: 'https://github.com/alikaankoc1/e-ticaret-app',
           link: 'https://github.com/alikaankoc1',
+          image: "/public/forma.png" 
         },
         {
           id: 2,
@@ -501,6 +643,7 @@ const allTranslations = {
           category: 'Web',
           github: 'https://github.com/alikaankoc1/bookify',
           link: 'https://github.com/alikaankoc1',
+          image: "/public/kütüphane.png" 
         },
         {
           id: 3,
@@ -509,6 +652,7 @@ const allTranslations = {
           category: 'Web',
           github: 'https://github.com/alikaankoc1/weather-app',
           link: 'https://github.com/alikaankoc1',
+          image: "/public/weather.png" 
         },
         {
           id: 4,
@@ -517,6 +661,7 @@ const allTranslations = {
           category: 'Backend',
           github: 'https://github.com/alikaankoc1/memory-card-game',
           link: 'https://github.com/alikaankoc1',
+          image: "/public/card.png" 
         },
           {
           id: 5,
@@ -525,6 +670,7 @@ const allTranslations = {
           category: 'Backend',
           github: 'https://github.com/alikaankoc1/Ehliyet-Quiz',
           link: 'https://github.com/alikaankoc1',
+          image: "/public/ehliyet.png" 
         },
           {
           id: 6,
@@ -533,6 +679,7 @@ const allTranslations = {
           category: 'Backend',
           github: 'https://github.com/alikaankoc1/todo-list-react',
           link: 'https://github.com/alikaankoc1',
+          image: "/public/todo.png" 
         },
       ],
     },
@@ -553,8 +700,103 @@ const allTranslations = {
         submitButton: 'Send Message',
         submittedMessage: 'Message Sent! ✓',
         address: 'Kütahya, Turkey',
-        phone: '+90 5XX XXX XX XX', // Tutarlılık için eklendi.
-    }
+        phone: '+90 5XX XXX XX XX',
+        // İletişim Bilgileri listesi
+        contactInfo: [
+            {
+                iconType: 'Mail',
+                title: 'Email',
+                value: 'alikaansoftdev@gmail.com',
+                link: 'mailto:alikaansoftdev@gmail.com',
+            },
+            {
+                iconType: 'Github',
+                title: 'GitHub',
+                value: 'github.com/alikaankoc1',
+                link: 'https://github.com/alikaankoc1',
+            },
+            {
+                iconType: 'Linkedin',
+                title: 'LinkedIn',
+                value: 'linkedin.com/in/alikaankoc',
+                link: 'https://linkedin.com/in/alikaankoc',
+            },
+            {
+                iconType: 'GraduationCap',
+                title: 'University',
+                value: 'DPU Computer Engineering',
+                link: '/about',
+            },
+            {
+                iconType: 'MapPin',
+                title: 'Location',
+                value: 'Kütahya, Turkey',
+                link: '#',
+            },
+        ],
+    },
+    // **Blog EN Çevirisi**
+    blogContent: {
+      sectionTitle: 'Blog',
+      sectionDescription: 'My articles on technology, web development, and personal experiences.',
+      readButton: 'Read',
+      noPostsMessage: 'No blog posts have been published yet. I will share my first articles soon!',
+      blogPosts: [
+        {
+          id: 1,
+          title: 'Developing Modern Web Applications with React',
+          excerpt: 'How to develop modern, fast, and responsive web applications with the React framework? In this article, we will learn the core concepts of React and best practices.',
+          author: 'Ali Kaan Koç',
+          date: '2024-01-15',
+          category: 'React',
+          readTime: '5 min',
+          image: '/react.webp',
+        },
+        {
+          id: 2,
+          title: 'Ensuring Type Safety with TypeScript',
+          excerpt: 'TypeScript adds type safety to JavaScript, making your code more reliable. In this article, we will learn the advantages of TypeScript and how to use it.',
+          author: 'Ali Kaan Koç',
+          date: '2024-01-10',
+          category: 'TypeScript',
+          readTime: '6 min',
+          image: '/typescript.webp',
+        },
+        {
+          id: 3,
+          title: 'Web Performance Optimization',
+          excerpt: 'Website speed and performance are very important for SEO. In this article, we will learn about performance optimization techniques.',
+          author: 'Ali Kaan Koç',
+          date: '2024-01-05',
+          category: 'Performance',
+          readTime: '7 min',
+          image: '/web.webp',
+        },
+      ],
+    },
+    // **YENİ EKLENEN EXPERIENCE CARD VERİSİ EN**
+    experienceCardsContent: {
+      cards: [
+        {
+          iconType: 'GraduationCap',
+          title: 'Education',
+          description: 'Kütahya Dumlupınar University - Computer Engineering',
+          details: '4th Year',
+        },
+        {
+          iconType: 'Code2',
+          title: 'Expertise',
+          description: 'Web Development | React | TypeScript | Git',
+          details: 'Modern web technologies',
+        },
+        {
+          iconType: 'Briefcase',
+          title: 'Experience',
+          description: 'React Developer Intern - EManager B.V',
+          details: 'Professional development',
+        },
+      ],
+    },
   },
 };
 
@@ -578,6 +820,10 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
   const ctaContent = currentContent.ctaContent;
   const projectsContent = currentContent.projectsContent;
   const contactContent = currentContent.contactContent; 
+  // BlogContent'i çözmek için (any) kullanıldı
+  const blogContent = (currentContent as any).blogContent; 
+  // Yeni eklenen Experience Card içeriği
+  const experienceCardsContent = (currentContent as any).experienceCardsContent; 
 
   return (
     <LanguageContext.Provider 
@@ -593,7 +839,9 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
         statsContent, 
         ctaContent, 
         projectsContent,
-        contactContent 
+        contactContent,
+        blogContent,
+        experienceCardsContent // <-- Context'e eklendi
       }}
     > 
       {children}

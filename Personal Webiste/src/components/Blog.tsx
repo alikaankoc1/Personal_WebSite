@@ -1,53 +1,24 @@
 import { Calendar, ArrowRight } from 'lucide-react';
+// useLanguage hook'unu import ettik
+import { useLanguage } from './LanguageContext'; 
+// BlogPost interface'ini LanguageContext.tsx'ten almamız gerekir.
+// Eğer LanguageContext.tsx dosyanızdan export edilmediyse, buraya yeniden tanımlanır.
+// (LanguageContext.tsx dosyasında tanımlı olduğu varsayılarak, burada sadece Blog.tsx içeriğini paylaşıyorum.)
 
-interface BlogPost {
-  id: number;
-  title: string;
-  excerpt: string;
-  author: string;
-  date: string;
-  category: string;
-  readTime: string;
-  image?: string;
-}
 
 interface BlogProps {
   isDark: boolean;
 }
 
 export function Blog({ isDark }: BlogProps) {
-  const blogPosts: BlogPost[] = [
-    {
-      id: 1,
-      title: 'React ile Modern Web Uygulamaları Geliştirmek',
-      excerpt: 'React framework\'ü ile modern, hızlı ve responsive web uygulamaları nasıl geliştirilir? Bu yazıda React\'in temel konseptlerini ve best practices\'leri öğreneceğiz.',
-      author: 'Ali Kaan Koç',
-      date: '2024-01-15',
-      category: 'React',
-      readTime: '5 min',
-      image: '/react.webp',
-    },
-    {
-      id: 2,
-      title: 'TypeScript ile Tip Güvenliği Sağlamak',
-      excerpt: 'TypeScript, JavaScript\'e tip güvenliği ekler ve kodunuzu daha güvenilir hale getirir. Bu yazıda TypeScript\'in avantajlarını ve nasıl kullanılacağını öğreneceğiz.',
-      author: 'Ali Kaan Koç',
-      date: '2024-01-10',
-      category: 'TypeScript',
-      readTime: '6 min',
-      image: '/typescript.webp',
-    },
-    {
-      id: 3,
-      title: 'Web Performansı Optimizasyonu',
-      excerpt: 'Web sitesinin hızı ve performansı SEO açısından çok önemlidir. Bu yazıda performans optimizasyonu teknikleri hakkında bilgi alacağız.',
-      author: 'Ali Kaan Koç',
-      date: '2024-01-05',
-      category: 'Performance',
-      readTime: '7 min',
-      image: '/web.webp',
-    },
-  ];
+  // useLanguage hook'unu kullanarak blogContent ve dil bilgisine erişim sağlıyoruz
+  const { blogContent, language } = useLanguage();
+  
+  // Blog gönderilerini doğrudan context'ten alıyoruz
+  const blogPosts = blogContent.blogPosts;
+  
+  // Tarih formatını dile göre ayarlıyoruz
+  const locale = language === 'tr' ? 'tr-TR' : 'en-US';
 
   return (
     <section className={`${isDark ? 'bg-dark' : 'bg-white'} py-20`}>
@@ -57,11 +28,13 @@ export function Blog({ isDark }: BlogProps) {
           <h2 className={`text-4xl md:text-5xl font-bold mb-4 ${
             isDark ? 'text-white' : 'text-gray-900'
           }`}>
-            Blog
+            {/* Dinamik Başlık */}
+            {blogContent.sectionTitle} 
           </h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full mb-6"></div>
           <p className={`text-lg ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-            Teknoloji, web geliştirme ve kişisel deneyimlerim hakkında yazılarım.
+            {/* Dinamik Açıklama */}
+            {blogContent.sectionDescription}
           </p>
         </div>
 
@@ -114,7 +87,8 @@ export function Blog({ isDark }: BlogProps) {
                           isDark ? 'text-gray-500' : 'text-gray-500'
                         }`}>
                           <Calendar size={14} />
-                          {new Date(post.date).toLocaleDateString('tr-TR', {
+                          {/* Tarihi dinamik olarak dile göre formatlıyoruz */}
+                          {new Date(post.date).toLocaleDateString(locale, {
                             year: 'numeric',
                             month: 'long',
                             day: 'numeric',
@@ -152,9 +126,11 @@ export function Blog({ isDark }: BlogProps) {
                       </div>
                       <button
                         className={"inline-flex items-center gap-2 px-4 py-2 rounded-full font-semibold text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"}
-                        aria-label={`Oku: ${post.title}`}
+                        // Butonun aria-label'ını çeviriye göre güncelliyoruz
+                        aria-label={`${blogContent.readButton}: ${post.title}`}
                       >
-                        Oku
+                        {/* Dinamik Oku Butonu */}
+                        {blogContent.readButton}
                         <ArrowRight size={16} className="ml-1 transform transition-transform group-hover:translate-x-1" />
                       </button>
                     </div>
@@ -166,7 +142,8 @@ export function Blog({ isDark }: BlogProps) {
         ) : (
           <div className="text-center py-16">
             <p className={`text-lg ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-              Henüz blog yazısı yayınlanmadı. Yakında ilk yazılarımı paylaşacağım!
+              {/* Dinamik Blog Yazısı Yok Mesajı */}
+              {blogContent.noPostsMessage}
             </p>
           </div>
         )}

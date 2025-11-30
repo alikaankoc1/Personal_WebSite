@@ -1,4 +1,5 @@
-import { GraduationCap, Code2, Briefcase } from 'lucide-react';
+import { GraduationCap, Code2, Briefcase, Icon } from 'lucide-react'; // DÜZELTME: LucideIcon yerine 'Icon' tipi kullanıldı
+import { useLanguage } from './LanguageContext'; 
 
 interface ExperienceCardProps {
   isDark: boolean;
@@ -42,46 +43,45 @@ function ExperienceCard({ isDark, icon, title, description, details }: Experienc
   );
 }
 
+// Icon tipi stringini ilgili Lucide Icon bileşenine eşleyen yardımcı fonksiyon
+// DÜZELTME: Geri dönüş tipi olarak 'Icon' kullanıldı
+const getIconComponent = (iconType: string): Icon => {
+  switch (iconType) {
+    case 'GraduationCap': return GraduationCap;
+    case 'Code2': return Code2;
+    case 'Briefcase': return Briefcase;
+    default: return Code2;
+  }
+};
+
 interface ExperienceProps {
   isDark: boolean;
 }
 
 export function Experience({ isDark }: ExperienceProps) {
-  const experiences = [
-    {
-      icon: <GraduationCap size={28} />,
-      title: 'Eğitim',
-      description: 'Kütahya Dumlupınar Üniversitesi - Bilgisayar Mühendisliği',
-      details: '4. Sınıf',
-    },
-    {
-      icon: <Code2 size={28} />,
-      title: 'Uzmanlık',
-      description: 'Web Geliştirme | React | JavaScript | Git ',
-      details: 'Modern web teknolojileri',
-    },
-    {
-      icon: <Briefcase size={28} />,
-      title: 'Deneyim',
-      description: 'React Developer  EManager B.V',
-      details: 'Profesyonel geliştirme',
-    },
-  ];
+  // Context'ten dinamik kart verilerini çekiyoruz
+  const { experienceCardsContent } = useLanguage();
+  const experiences = experienceCardsContent.cards;
 
   return (
     <section className={`${isDark ? 'bg-dark-secondary' : 'bg-gray-50'} py-20`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-3 gap-8">
-          {experiences.map((exp, index) => (
-            <ExperienceCard
-              key={index}
-              isDark={isDark}
-              icon={exp.icon}
-              title={exp.title}
-              description={exp.description}
-              details={exp.details}
-            />
-          ))}
+          {experiences.map((exp, index) => {
+            const IconComponent = getIconComponent(exp.iconType);
+            return (
+              <ExperienceCard
+                key={index}
+                isDark={isDark}
+                // DİNAMİK İKON EKLEME
+                icon={<IconComponent size={28} />}
+                // DİNAMİK METİNLER
+                title={exp.title} 
+                description={exp.description} 
+                details={exp.details}
+              />
+            );
+          })}
         </div>
       </div>
     </section>
