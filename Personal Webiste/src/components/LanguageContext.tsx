@@ -289,6 +289,8 @@ const allTranslations = {
           category: 'Full Stack',
           github: 'https://github.com/alikaankoc1/e-ticaret-app',
           link: 'https://github.com/alikaankoc1',
+          image: "/public/react.webp"   // GÖRSEL BURADA
+
         },
         {
           id: 2,
