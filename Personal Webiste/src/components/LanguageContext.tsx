@@ -1,4 +1,5 @@
 import { createContext, useState, useContext, ReactNode } from 'react';
+import { href } from 'react-router-dom';
 
 // --- TEMEL TİP TANIMLARI ---
 type Language = 'tr' | 'en';
@@ -217,7 +218,7 @@ const allTranslations = {
     footerContent: { 
       tagline: 'Web Developer | Bilgisayar Mühendisliği Öğrencisi',
       quickLinks: 'Hızlı Bağlantılar',
-      copyRight: '© 2024 Ali Kaan Koç. Tüm Hakları Saklıdır.',
+      copyRight: '© 2025 Ali Kaan Koç. Tüm Hakları Saklıdır.',
     },
     aboutContent: {
       sectionTitle: 'Hakkımda',
@@ -240,14 +241,14 @@ const allTranslations = {
           title: 'React Developer Stajyeri',
           company: 'E.Manager B.V',
           location: 'Uzaktan',
-          date: '2024 - Devam Ediyor',
+          date: '2025 - 2025',
           description: 'Start-up şirketinde React geliştirmesi yaptım. Modern web uygulamaları geliştirdim.',
         },
         {
           title: 'Donanım Stajyeri',
           company: 'Karayolları Genel Müdürlüğü',
           location: 'Türkiye',
-          date: '2023 - 2023',
+          date: '2024 - 2024',
           description: 'Donanım bakımı ve teknik destek görevlerinde bulundum.',
         },
       ],
@@ -394,8 +395,8 @@ const allTranslations = {
         subjectLabel: 'Konu',
         messageLabel: 'Mesaj',
         namePlaceholder: 'Adınız',
-        emailPlaceholder: 'ornek@email.com',
-        subjectPlaceholder: 'Proje Teklifi',
+        emailPlaceholder: 'ornek@gmail.com',
+        subjectPlaceholder: 'Mesaj Konusu',
         messagePlaceholder: 'Mesajınızı buraya yazın...',
         submitButton: 'Mesaj Gönder',
         submittedMessage: 'Mesaj Gönderildi! ✓',
@@ -514,6 +515,7 @@ const allTranslations = {
       description: 'I develop innovative projects with modern web technologies. I specialize in React, JavaScript, and Python.',
       buttonProjects: 'View My Projects',
       buttonContact: 'Get in Touch',
+      
     },
     footerContent: { 
       tagline: 'Web Developer | Computer Engineering Student',

@@ -1,23 +1,12 @@
 import { Calendar, ArrowRight } from 'lucide-react';
-// useLanguage hook'unu import ettik
+
 import { useLanguage } from './LanguageContext'; 
-// BlogPost interface'ini LanguageContext.tsx'ten almamız gerekir.
-// Eğer LanguageContext.tsx dosyanızdan export edilmediyse, buraya yeniden tanımlanır.
-// (LanguageContext.tsx dosyasında tanımlı olduğu varsayılarak, burada sadece Blog.tsx içeriğini paylaşıyorum.)
-
-
 interface BlogProps {
   isDark: boolean;
 }
-
 export function Blog({ isDark }: BlogProps) {
-  // useLanguage hook'unu kullanarak blogContent ve dil bilgisine erişim sağlıyoruz
   const { blogContent, language } = useLanguage();
-  
-  // Blog gönderilerini doğrudan context'ten alıyoruz
   const blogPosts = blogContent.blogPosts;
-  
-  // Tarih formatını dile göre ayarlıyoruz
   const locale = language === 'tr' ? 'tr-TR' : 'en-US';
 
   return (
@@ -126,7 +115,7 @@ export function Blog({ isDark }: BlogProps) {
                       </div>
                       <button
                         className={"inline-flex items-center gap-2 px-4 py-2 rounded-full font-semibold text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"}
-                        // Butonun aria-label'ını çeviriye göre güncelliyoruz
+                     
                         aria-label={`${blogContent.readButton}: ${post.title}`}
                       >
                         {/* Dinamik Oku Butonu */}

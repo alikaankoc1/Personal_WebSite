@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, Sun, Moon } from 'lucide-react';
-import { useLanguage } from '../components/LanguageContext'; // Yeni: Dil Context'ini import et
+import { useLanguage } from '../components/LanguageContext';
 
 interface NavbarProps {
   isDark: boolean;
@@ -12,18 +12,12 @@ interface NavbarProps {
 
 export function Navbar({ isDark, setIsDark }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
-  
-  // Dil Context'ini kullan
   const { language, setLanguage, navContent } = useLanguage();
 
   const toggleMenu = () => setIsOpen(!isOpen);
-
-  // Yeni: Dil Değiştirme Fonksiyonu
   const toggleLanguage = () => {
     setLanguage(language === 'tr' ? 'en' : 'tr');
   };
-
-  // Navigasyon öğeleri, Context'ten gelen içeriği kullanacak
   const navItems = [
     { label: navContent.home, href: '/' },
     { label: navContent.about, href: '/hakkimda' },

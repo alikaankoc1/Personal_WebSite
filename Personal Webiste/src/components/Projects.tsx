@@ -3,10 +3,6 @@
 import { useState, useMemo } from 'react'; // useMemo eklendi
 import { Github, ExternalLink } from 'lucide-react';
 import { useLanguage } from './LanguageContext';
-
-// Project interface'i ve Project[] listesi LanguageContext'e taşındığı için kaldırıldı.
-
-// Proje kategorileri için sabit tür (Context'teki category field'ı ile eşleşmeli)
 type ProjectCategoryKey = 'All' | 'Web' | 'Mobile' | 'Backend' | 'Full Stack';
 
 interface ProjectsProps {
@@ -14,7 +10,6 @@ interface ProjectsProps {
 }
 
 export function Projects({ isDark }: ProjectsProps) {
-  // Context'ten dinamik içeriği çekiyoruz
   const { projectsContent } = useLanguage();
   const { 
     sectionTitle, 
@@ -26,20 +21,13 @@ export function Projects({ isDark }: ProjectsProps) {
   } = projectsContent;
 
   const [activeFilter, setActiveFilter] = useState<ProjectCategoryKey>('All');
-  
-  // Filtreleme için sabit anahtarları kullanıyoruz
   const filterKeys: ProjectCategoryKey[] = ['All', 'Web', 'Mobile', 'Backend', 'Full Stack'];
-
-  // Filtrelenmiş projeleri hesaplıyoruz
   const filteredProjects = useMemo(() => {
     if (activeFilter === 'All') {
       return projects;
     }
     return projects.filter(project => project.category === activeFilter);
   }, [projects, activeFilter]);
-
-
-  // CSS sınıfları sabit tutulmuştur.
   return (
     <section className={`${isDark ? 'bg-dark' : 'bg-white'} py-20`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

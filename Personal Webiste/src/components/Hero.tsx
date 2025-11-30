@@ -1,9 +1,7 @@
 // Hero.tsx
 
 import { Github, Linkedin, Mail, ArrowRight } from 'lucide-react';
-// YENİ IMPORT: react-router-dom'dan Link'i içeri aktarıyoruz
 import { Link } from 'react-router-dom';
-// YENİ IMPORT: Dil desteği için useLanguage hook'unu içeri aktarıyoruz
 import { useLanguage } from '../components/LanguageContext'; 
 
 interface HeroProps {
@@ -12,7 +10,6 @@ interface HeroProps {
 }
 
 export function Hero({ isDark, profileImage }: HeroProps) {
-  // Context'ten dinamik metinleri çekiyoruz
   const { heroContent } = useLanguage(); 
 
   return (
@@ -52,7 +49,6 @@ export function Hero({ isDark, profileImage }: HeroProps) {
 
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              {/* Projelerimi Gör butonu: /projeler sayfasına yönlendiriyor */}
               <Link 
                 to="/projeler" 
                 className="group btn-primary flex items-center justify-center gap-2"
@@ -60,8 +56,6 @@ export function Hero({ isDark, profileImage }: HeroProps) {
                 {heroContent.buttonProjects} {/* DİNAMİK METİN */}
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </Link>
-              
-              {/* İletişime Geç butonu: /iletisim sayfasına yönlendiriyor */}
               <Link 
                 to="/iletisim" 
                 className={`btn-secondary flex items-center justify-center ${isDark ? 'text-white' : 'text-black'}`}

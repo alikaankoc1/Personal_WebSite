@@ -1,16 +1,13 @@
 // Experiences.tsx
 
 import { MapPin, Calendar } from 'lucide-react';
-import { useLanguage } from './LanguageContext'; // useLanguage hook'unu içeri aktarıyoruz
-
-// Artık ExperienceItem interface'ini dışarıdan (LanguageContext'ten) aldığımız için burada tutmaya gerek yok.
+import { useLanguage } from './LanguageContext';
 
 interface ExperiencesProps {
   isDark: boolean;
 }
 
 export function Experiences({ isDark }: ExperiencesProps) {
-  // Context'ten dinamik metinleri ve deneyim listesini çekiyoruz
   const { experiencesContent } = useLanguage();
   const { sectionTitle, experiences } = experiencesContent;
 
@@ -45,7 +42,8 @@ export function Experiences({ isDark }: ExperiencesProps) {
                     {exp.title} {/* DİNAMİK METİN */}
                   </h3>
                   <a
-                    href="#"
+                    href=""
+                    
                     className="text-blue-500 hover:text-blue-600 font-semibold transition-colors"
                   >
                     {exp.company} {/* DİNAMİK METİN */}

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Mail, Github, Linkedin, MapPin, Send, GraduationCap, Phone } from 'lucide-react';
-// useLanguage hook'unu import ettik
 import { useLanguage } from './LanguageContext'; 
 
 interface ContactProps {
@@ -8,7 +7,6 @@ interface ContactProps {
 }
 
 export function Contact({ isDark }: ContactProps) {
-  // Dil bağlamından çeviri içeriğini alıyoruz
   const { contactContent, aboutContent } = useLanguage(); 
     
   const [formData, setFormData] = useState({
@@ -38,8 +36,6 @@ export function Contact({ isDark }: ContactProps) {
       setSubmitted(false);
     }, 3000);
   };
-  
-  // contactContent'ten gelen dinamik çeviri verileri ile contactInfo dizisi
   const contactInfo = [
     {
       icon: <Mail size={24} />,
@@ -74,7 +70,6 @@ export function Contact({ isDark }: ContactProps) {
     },
     {
       icon: <Phone size={24} />,
-      // Telefon için statik bir başlık kullandık (contactContent'te title alanı yoktu)
       title: 'Telefon', 
       value: contactContent.phone,
       link: `tel:${contactContent.phone}`,

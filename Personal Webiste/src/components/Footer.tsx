@@ -2,14 +2,10 @@
 
 import { Github, Linkedin, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
-// Dil desteği için useLanguage hook'unu içeri aktarıyoruz
 import { useLanguage } from '../components/LanguageContext'; // Dosya yolunuza göre ayarlayın (genellikle doğru)
 
 export function Footer({ isDark }: { isDark: boolean }) {
-  // Context'ten dinamik metinleri çekiyoruz
   const { navContent, footerContent } = useLanguage(); 
-
-  // Navigasyon bağlantılarını NavContent'ten dinamik olarak oluşturuyoruz
   const navItems = [
     { label: navContent.home, href: '/' },
     { label: navContent.about, href: '/hakkimda' },
@@ -40,7 +36,7 @@ export function Footer({ isDark }: { isDark: boolean }) {
               {footerContent.quickLinks} 
             </h4>
             <ul className="space-y-2">
-              {/* Navigasyon öğeleri (Artık navItems üzerinden dinamik geliyor) */}
+      
               {navItems.map((item) => (
                 <li key={item.href}>
                   <Link
@@ -58,12 +54,12 @@ export function Footer({ isDark }: { isDark: boolean }) {
 
           {/* Social Media */}
           <div>
-            {/* SOSYAL MEDYA Başlığı (Çeviriyi buraya ekledik) */}
+           
             <h4 className={`font-semibold mb-4 ${isDark ? 'text-white' : 'text-gray-100'}`}>
               İletişim
             </h4>
             <div className="flex gap-4">
-              {/* Sosyal Medya Bağlantıları (Değiştirilmedi) */}
+          
               <a
                 href="https://github.com/alikaankoc1"
                 target="_blank"
@@ -109,10 +105,9 @@ export function Footer({ isDark }: { isDark: boolean }) {
             <p className={`text-sm ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
               {footerContent.copyRight} 
             </p>
-            {/* Bu kısım sabit bırakıldı, çeviriye dahil edilmek istenirse Context'e eklenmelidir */}
-            <p className={`text-xs ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
+            {/* <p className={`text-xs ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
               Geliştirici: Ali Kaan Koç
-            </p>
+            </p> */}
           </div>
         </div>
       </div>

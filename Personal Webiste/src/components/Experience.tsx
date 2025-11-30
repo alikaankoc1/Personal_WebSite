@@ -1,4 +1,4 @@
-import { GraduationCap, Code2, Briefcase, Icon } from 'lucide-react'; // DÜZELTME: LucideIcon yerine 'Icon' tipi kullanıldı
+import { GraduationCap, Code2, Briefcase, Icon } from 'lucide-react'; 
 import { useLanguage } from './LanguageContext'; 
 
 interface ExperienceCardProps {
@@ -42,9 +42,6 @@ function ExperienceCard({ isDark, icon, title, description, details }: Experienc
     </div>
   );
 }
-
-// Icon tipi stringini ilgili Lucide Icon bileşenine eşleyen yardımcı fonksiyon
-// DÜZELTME: Geri dönüş tipi olarak 'Icon' kullanıldı
 const getIconComponent = (iconType: string): Icon => {
   switch (iconType) {
     case 'GraduationCap': return GraduationCap;

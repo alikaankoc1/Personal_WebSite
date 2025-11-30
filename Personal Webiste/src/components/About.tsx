@@ -1,15 +1,14 @@
 // About.tsx
 
 import { GraduationCap, Zap } from 'lucide-react';
-// useLanguage hook'unu içeri aktarıyoruz
-import { useLanguage } from './LanguageContext'; // Dosya yolunuzu kontrol edin
+
+import { useLanguage } from './LanguageContext'; 
 
 interface AboutProps {
   isDark: boolean;
 }
 
 export function About({ isDark }: AboutProps) {
-  // Context'ten dinamik metinleri çekiyoruz
   const { aboutContent } = useLanguage();
 
   return (
