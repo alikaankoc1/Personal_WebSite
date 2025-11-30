@@ -1,11 +1,16 @@
 import { useState } from 'react';
-import { Mail, Github, Linkedin, MapPin, Send, GraduationCap } from 'lucide-react';
+import { Mail, Github, Linkedin, MapPin, Send, GraduationCap, Phone } from 'lucide-react';
+// useLanguage hook'unu import ettik
+import { useLanguage } from './LanguageContext'; 
 
 interface ContactProps {
   isDark: boolean;
 }
 
 export function Contact({ isDark }: ContactProps) {
+  // Dil bağlamından çeviri içeriğini alıyoruz
+  const { contactContent, aboutContent } = useLanguage(); 
+    
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -33,11 +38,12 @@ export function Contact({ isDark }: ContactProps) {
       setSubmitted(false);
     }, 3000);
   };
-
+  
+  // contactContent'ten gelen dinamik çeviri verileri ile contactInfo dizisi
   const contactInfo = [
     {
       icon: <Mail size={24} />,
-      title: 'Email',
+      title: contactContent.emailLabel,
       value: 'alikaansoftdev@gmail.com',
       link: 'mailto:alikaansoftdev@gmail.com',
     },
@@ -55,15 +61,23 @@ export function Contact({ isDark }: ContactProps) {
     },
     {
       icon: <GraduationCap size={24} />,
-      title: 'Üniversite',
-      value: 'DPÜ Bilgisayar Mühendisliği',
+      // Hakkımda kısmından eğitim başlığını aldık
+      title: aboutContent.educationTitle, 
+      value: aboutContent.educationUniversity,
       link: '/hakkimda',
     },
     {
       icon: <MapPin size={24} />,
-      title: 'Konum',
-      value: 'Kütahya, Türkiye',
+      title: contactContent.infoLocation,
+      value: contactContent.address,
       link: '#',
+    },
+    {
+      icon: <Phone size={24} />,
+      // Telefon için statik bir başlık kullandık (contactContent'te title alanı yoktu)
+      title: 'Telefon', 
+      value: contactContent.phone,
+      link: `tel:${contactContent.phone}`,
     },
   ];
 
@@ -75,11 +89,13 @@ export function Contact({ isDark }: ContactProps) {
           <h2 className={`text-4xl md:text-5xl font-bold mb-4 ${
             isDark ? 'text-white' : 'text-gray-900'
           }`}>
-            İletişim
+            {/* Dinamik Başlık */}
+            {contactContent.sectionTitle} 
           </h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full mb-6"></div>
           <p className={`text-lg ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-            Projeleriniz veya işbirliği fırsatları için benimle iletişime geçebilirsiniz.
+            {/* Dinamik Açıklama */}
+            {contactContent.description} 
           </p>
         </div>
 
@@ -125,7 +141,8 @@ export function Contact({ isDark }: ContactProps) {
                 : 'bg-gray-50 border-gray-200'
             }`}>
               <h3 className={`text-2xl font-bold mb-6 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                Mesaj Gönder
+                {/* Dinamik Form Başlığı */}
+                {contactContent.formTitle}
               </h3>
 
               <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
@@ -135,14 +152,16 @@ export function Contact({ isDark }: ContactProps) {
                     <label className={`block text-sm font-semibold mb-2 ${
                       isDark ? 'text-gray-300' : 'text-gray-700'
                     }`}>
-                      Adınız *
+                      {/* Dinamik Label */}
+                      {contactContent.nameLabel} *
                     </label>
                     <input
                       type="text"
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder="Adınız"
+                      // Dinamik Placeholder
+                      placeholder={contactContent.namePlaceholder}
                       required
                       className={`w-full px-4 py-3 rounded-lg border transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                         isDark
@@ -155,14 +174,16 @@ export function Contact({ isDark }: ContactProps) {
                     <label className={`block text-sm font-semibold mb-2 ${
                       isDark ? 'text-gray-300' : 'text-gray-700'
                     }`}>
-                      Email *
+                      {/* Dinamik Label */}
+                      {contactContent.emailLabel} *
                     </label>
                     <input
                       type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder="email@example.com"
+                      // Dinamik Placeholder
+                      placeholder={contactContent.emailPlaceholder}
                       required
                       className={`w-full px-4 py-3 rounded-lg border transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                         isDark
@@ -178,14 +199,16 @@ export function Contact({ isDark }: ContactProps) {
                   <label className={`block text-sm font-semibold mb-2 ${
                     isDark ? 'text-gray-300' : 'text-gray-700'
                   }`}>
-                    Konu *
+                    {/* Dinamik Label */}
+                    {contactContent.subjectLabel} *
                   </label>
                   <input
                     type="text"
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    placeholder="Mesajınızın konusu"
+                    // Dinamik Placeholder
+                    placeholder={contactContent.subjectPlaceholder}
                     required
                     className={`w-full px-4 py-3 rounded-lg border transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                       isDark
@@ -200,13 +223,15 @@ export function Contact({ isDark }: ContactProps) {
                   <label className={`block text-sm font-semibold mb-2 ${
                     isDark ? 'text-gray-300' : 'text-gray-700'
                   }`}>
-                    Mesaj *
+                    {/* Dinamik Label */}
+                    {contactContent.messageLabel} *
                   </label>
                   <textarea
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Mesajınızı buraya yazın..."
+                    // Dinamik Placeholder
+                    placeholder={contactContent.messagePlaceholder}
                     required
                     rows={5}
                     className={`w-full px-4 py-3 rounded-lg border transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none ${
@@ -227,7 +252,8 @@ export function Contact({ isDark }: ContactProps) {
                   }`}
                 >
                   <Send size={18} />
-                  {submitted ? 'Mesaj Gönderildi! ✓' : 'Mesaj Gönder'}
+                  {/* Dinamik Buton Metni */}
+                  {submitted ? contactContent.submittedMessage : contactContent.submitButton}
                 </button>
               </form>
             </div>

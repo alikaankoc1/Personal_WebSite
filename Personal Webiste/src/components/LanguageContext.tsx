@@ -55,7 +55,6 @@ interface ExperiencesContent {
   experiences: ExperienceItem[];
 }
 
-// **CertificateItem tanımı eklendi (Hata düzeltildi)**
 interface CertificateItem {
   id: number;
   title: string;
@@ -108,7 +107,6 @@ interface ProjectsContent {
   projects: ProjectItem[];
 }
 
-// **ContactContent tanımı eklendi**
 interface ContactContent {
     sectionTitle: string;
     description: string;
@@ -126,7 +124,7 @@ interface ContactContent {
     submitButton: string;
     submittedMessage: string;
     address: string;
-    phone: string;
+    phone: string; // phone alanı zaten tip tanımında var
 }
 
 // Tüm Context değerlerini tanımlayan ana arayüz
@@ -555,7 +553,7 @@ const allTranslations = {
         submitButton: 'Send Message',
         submittedMessage: 'Message Sent! ✓',
         address: 'Kütahya, Turkey',
-       
+        phone: '+90 5XX XXX XX XX', // Tutarlılık için eklendi.
     }
   },
 };
