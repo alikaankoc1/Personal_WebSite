@@ -358,9 +358,9 @@ const allTranslations = {
           id: 4,
           title: 'Hafıza Eşleştirme Kart Oyunu',
           description: 'Hafıza geliştirmek amaçlı, süreyle yarışılan bir kart eşleştirme oyunu',
-          category: 'Backend',
+          category: 'Mobile',
           github: 'https://github.com/alikaankoc1/memory-card-game',
-          link: 'https://github.com/alikaankoc1',
+          link: 'https://alikaankoc1.github.io/gamememorycard.github.io/',
           image: "/public/card.png" 
         },
          {
@@ -649,7 +649,7 @@ const allTranslations = {
           id: 3,
           title: 'Weather App',
           description: 'A mobile-friendly application showing real-time weather data.',
-          category: 'Web',
+          category: 'Mobile',
           github: 'https://github.com/alikaankoc1/weather-app',
           link: 'https://github.com/alikaankoc1',
           image: "/public/weather.png" 
@@ -658,16 +658,16 @@ const allTranslations = {
           id: 4,
           title: 'Memory Matching Card Game',
           description: 'A card matching game with a timed challenge to improve memory.',
-          category: 'Backend',
+          category: 'Mobile',
           github: 'https://github.com/alikaankoc1/memory-card-game',
-          link: 'https://github.com/alikaankoc1',
+          link: 'https://alikaankoc1.github.io/gamememorycard.github.io/',
           image: "/public/card.png" 
         },
           {
           id: 5,
           title: 'Driving License Quiz Application',
           description: 'An online exam application that includes drivers license exam questions and races against time.',
-          category: 'Backend',
+          category: 'Full Stack',
           github: 'https://github.com/alikaankoc1/Ehliyet-Quiz',
           link: 'https://github.com/alikaankoc1',
           image: "/public/ehliyet.png" 
