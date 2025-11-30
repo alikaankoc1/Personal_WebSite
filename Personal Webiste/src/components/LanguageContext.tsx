@@ -1,5 +1,6 @@
 import { createContext, useState, useContext, ReactNode } from 'react';
 
+// --- TEMEL TİP TANIMLARI ---
 type Language = 'tr' | 'en';
 
 interface NavContent {
@@ -54,6 +55,7 @@ interface ExperiencesContent {
   experiences: ExperienceItem[];
 }
 
+// **CertificateItem tanımı eklendi (Hata düzeltildi)**
 interface CertificateItem {
   id: number;
   title: string;
@@ -106,6 +108,28 @@ interface ProjectsContent {
   projects: ProjectItem[];
 }
 
+// **ContactContent tanımı eklendi**
+interface ContactContent {
+    sectionTitle: string;
+    description: string;
+    infoTitle: string;
+    infoLocation: string;
+    formTitle: string;
+    nameLabel: string;
+    emailLabel: string;
+    subjectLabel: string;
+    messageLabel: string;
+    namePlaceholder: string;
+    emailPlaceholder: string;
+    subjectPlaceholder: string;
+    messagePlaceholder: string;
+    submitButton: string;
+    submittedMessage: string;
+    address: string;
+    phone: string;
+}
+
+// Tüm Context değerlerini tanımlayan ana arayüz
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
@@ -118,6 +142,7 @@ interface LanguageContextType {
   statsContent: StatsContent;
   ctaContent: CTAContent;
   projectsContent: ProjectsContent;
+  contactContent: ContactContent;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -126,6 +151,7 @@ interface LanguageProviderProps {
   children: ReactNode;
 }
 
+// --- ÇEVİRİ VERİLERİ (allTranslations) ---
 const allTranslations = {
   tr: {
     navContent: {
@@ -276,6 +302,25 @@ const allTranslations = {
         },
       ],
     },
+    contactContent: {
+        sectionTitle: 'İletişim',
+        description: 'Projeleriniz, işbirliği teklifleriniz veya sadece bir merhaba demek için aşağıdaki formu kullanın ya da iletişim bilgilerimi kullanın.',
+        infoTitle: 'İletişim Bilgileri',
+        infoLocation: 'Türkiye',
+        formTitle: 'Bana Bir Mesaj Gönderin',
+        nameLabel: 'Adınız Soyadınız',
+        emailLabel: 'Email Adresiniz',
+        subjectLabel: 'Konu',
+        messageLabel: 'Mesaj',
+        namePlaceholder: 'Adınız',
+        emailPlaceholder: 'ornek@email.com',
+        subjectPlaceholder: 'Proje Teklifi',
+        messagePlaceholder: 'Mesajınızı buraya yazın...',
+        submitButton: 'Mesaj Gönder',
+        submittedMessage: 'Mesaj Gönderildi! ✓',
+        address: 'Kütahya, Türkiye',
+        phone: '+90 5XX XXX XX XX', 
+    }
   },
   en: {
     navContent: {
@@ -426,16 +471,38 @@ const allTranslations = {
         },
       ],
     },
+    contactContent: {
+        sectionTitle: 'Contact',
+        description: 'Use the form below for your projects, collaboration offers, or just to say hello, or use my contact information.',
+        infoTitle: 'Contact Information',
+        infoLocation: 'Turkey',
+        formTitle: 'Send Me A Message',
+        nameLabel: 'Your Name',
+        emailLabel: 'Your Email',
+        subjectLabel: 'Subject',
+        messageLabel: 'Message',
+        namePlaceholder: 'Your Name',
+        emailPlaceholder: 'example@email.com',
+        subjectPlaceholder: 'Project Inquiry',
+        messagePlaceholder: 'Write your message here...',
+        submitButton: 'Send Message',
+        submittedMessage: 'Message Sent! ✓',
+        address: 'Kütahya, Turkey',
+        phone: '+90 5XX XXX XX XX', 
+    }
   },
 };
 
 
+// --- LANGUAGE PROVIDER ---
+
 export const LanguageProvider = ({ children }: LanguageProviderProps) => {
   const [language, setLanguage] = useState<Language>('tr'); 
 
-  // Hata giderildi: allTranslations[language] ifadesini açıkça typeof allTranslations.tr olarak belirtiyoruz.
+  // Tip Hatasını Çözen Kritik Satır: currentContent'in allTranslations.tr tipinde olduğunu belirtir.
   const currentContent = allTranslations[language] as typeof allTranslations.tr;
   
+  // Tüm çeviri içerikleri buradan alınıyor
   const navContent = currentContent.navContent;
   const heroContent = currentContent.heroContent;
   const footerContent = currentContent.footerContent;
@@ -445,6 +512,7 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
   const statsContent = currentContent.statsContent;
   const ctaContent = currentContent.ctaContent;
   const projectsContent = currentContent.projectsContent;
+  const contactContent = currentContent.contactContent; 
 
   return (
     <LanguageContext.Provider 
@@ -459,13 +527,16 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
         certificatesContent, 
         statsContent, 
         ctaContent, 
-        projectsContent 
+        projectsContent,
+        contactContent 
       }}
     > 
       {children}
     </LanguageContext.Provider>
   );
 };
+
+// --- HOOK ---
 
 export const useLanguage = () => {
   const context = useContext(LanguageContext);
