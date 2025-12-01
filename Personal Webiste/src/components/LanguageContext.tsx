@@ -313,6 +313,7 @@ const allTranslations = {
       heading: 'Birlikte Çalışmak İster misiniz?',
       subheading: 'Projeleriniz için benimle iletişime geçebilirsiniz.',
       buttonText: 'İletişime Geçin',
+      
     },
     projectsContent: {
       sectionTitle: 'Projelerim',
