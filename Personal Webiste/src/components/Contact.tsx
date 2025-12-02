@@ -16,7 +16,8 @@ export function Contact({ isDark }: ContactProps) {
     message: '',
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  // GÜNCELLEME 1: Gönderim durumunu yönetmek için yeni state
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -26,16 +27,60 @@ export function Contact({ isDark }: ContactProps) {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // GÜNCELLEME 2: Node.js sunucusuna POST isteği gönderecek asenkron fonksiyon
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Burada form gönderme işlemi yapılabilir
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    setTimeout(() => {
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setSubmitted(false);
-    }, 3000);
+
+    if (status === 'loading') return; // Zaten gönderiliyorsa tekrar denemeyi engelle
+
+    setStatus('loading'); // Durumu "yükleniyor" olarak ayarla
+
+    // Node.js sunucumuzun çalıştığı adresi kullanın
+    const apiUrl = 'http://localhost:3001/api/gonder'; 
+
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData), // Verileri JSON olarak gönder
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            setStatus('success'); // Başarılı oldu
+            // Formu temizle
+            setFormData({ name: '', email: '', subject: '', message: '' }); 
+        } else {
+            setStatus('error'); // Hata oluştu
+            console.error('API Hatası:', data.message);
+            alert(data.message || 'Mesaj gönderilemedi: Sunucu tarafında bir hata oluştu.');
+        }
+    } catch (error) {
+        setStatus('error'); // Ağ veya bağlantı hatası
+        console.error('Ağ Hatası:', error);
+        alert('Sunucuya bağlanılamadı (http://localhost:3001). Lütfen Node.js sunucusunun çalıştığından emin olun.');
+    }
+    
+    // Başarı/Hata mesajı bir süre göründükten sonra durumu sıfırla
+    // Hata durumunda kullanıcıya tekrar deneme şansı vermek için reset yapmıyoruz
+    if (status === 'success') { 
+        setTimeout(() => {
+            setStatus('idle');
+        }, 4000);
+    }
   };
+  
+  // GÜNCELLEME 3: Buton metnini duruma göre ayarlayan yardımcı fonksiyon
+  const getButtonText = () => {
+    if (status === 'loading') return 'Gönderiliyor...';
+    if (status === 'success') return 'Mesaj İletildi! ✅';
+    if (status === 'error') return 'Tekrar Dene ❌';
+    return contactContent.submitButton;
+  };
+
   const contactInfo = [
     {
       icon: <Mail size={24} />,
@@ -240,15 +285,18 @@ export function Contact({ isDark }: ContactProps) {
                 {/* Submit Button */}
                 <button
                   type="submit"
+                  disabled={status === 'loading'} // GÜNCELLEME: Yüklenirken butonu devre dışı bırak
                   className={`w-full py-3 px-6 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all duration-300 ${
-                    submitted
-                      ? 'bg-green-500 text-white'
+                    status === 'success' // Başarılı durumda yeşil
+                      ? 'bg-green-500 text-white hover:shadow-lg hover:-translate-y-1'
+                      : status === 'error' // Hata durumunda kırmızı
+                      ? 'bg-red-500 text-white hover:shadow-lg hover:-translate-y-1'
                       : 'bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:shadow-lg hover:-translate-y-1'
                   }`}
                 >
                   <Send size={18} />
-                  {/* Dinamik Buton Metni */}
-                  {submitted ? contactContent.submittedMessage : contactContent.submitButton}
+                  {/* GÜNCELLEME: Dinamik Buton Metni */}
+                  {getButtonText()} 
                 </button>
               </form>
             </div>
