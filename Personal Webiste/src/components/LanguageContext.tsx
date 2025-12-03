@@ -211,7 +211,7 @@ const allTranslations = {
       titleFirstName: 'Ali Kaan',
       titleLastName: 'Koç',
       titleProfession: 'Web Developer & Bilgisayar Mühendisliği Öğrencisi',
-      description: 'Modern web teknolojileri ile yenilikçi projeler geliştiriyorum. React, JavaScript ve Node.js konularında uzmanlaşıyorum..',
+      description: 'Modern web teknolojileri ile yenilikçi projeler geliştiriyorum. React, JavaScript ve Node.js konularında uzmanlaşıyorum.',
       buttonProjects: 'Projelerimi Gör',
       buttonContact: 'İletişime Geç',
     },
